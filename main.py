@@ -47,7 +47,7 @@ def get_user_test(message):
     Button_amountSigar = types.KeyboardButton('Сколько сигарет выкурено за сегодня')
     Button_changeTime = types.KeyboardButton('Изменить время без сигарет')
     markup_1.add(Button_smoke, Button_smokeAndSleep, Button_amountSigar, Button_changeTime)
-    bot.send_message(message.chat.id, "Приятного мой друг, я тебе сообщу когда снова можно будет покурить")
+    bot.send_message(message.chat.id, f"Приятного мой друг, я тебе сообщу когда снова можно будет покурить, а именно через {timeSmoke // 60} минут")
     global cigaretteCounter
     cigaretteCounter = cigaretteCounter + 1
     time.sleep(timeSmoke)
@@ -101,10 +101,12 @@ def rekTime(message):
     markup_1.add(Button_smoke, Button_smokeAndSleep, Button_amountSigar, Button_changeTime)
     if message.text == "40 минут":
         bot.send_message(message.chat.id, "Промежуток между перекурами теперь 40 минут")
+        global timeSmoke
         timeSmoke = 2400
         bot.send_message(message.chat.id, "Отлично! Давай же начнём, как покуришь дай мне знать", reply_markup=markup_1)
     elif message.text == "1 час":
         bot.send_message(message.chat.id, "Промежуток между перекурами теперь 1 час")
+
         timeSmoke = 3600
         bot.send_message(message.chat.id, "Отлично! Давай же начнём, как покуришь дай мне знать", reply_markup=markup_1)
     elif message.text == "1.5 часа":
